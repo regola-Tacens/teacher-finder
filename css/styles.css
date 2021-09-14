@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #011020;
+  font-family: sans-serif;
+  --color-listitems-blue : #0052a9;
+  --color-tags-blue : #1771da;
+  --color-select-grey: #eee;
+  --color-border-greys: #bbb;
+}
+
+.container{
+  padding : 3%;
+  margin : 0 auto;
+  width : 70%;
+  height: 100vh;
+  background-color: white;
+  display: block;
+}
+
+#formInformation{
+  margin-bottom: 2%;
+}
+
+#form__teacher{
+  width : 100%;
+  
+}
+#form__teacher select {
+  
+  width : 50%;
+  background-color: var(--color-select-grey);
+  padding: 3%;
+  font-size: 1.3rem;
+}
+#title__teacher-counter{
+  
+  padding:2% 0;
+  font-size: 3.5rem;
+  margin: 4% 0;
+  border-bottom: 1px solid var(--color-border-greys);
+  
+}
+
+.teacherLi{
+  font-size: 1.2rem;
+  background-color: var(--color-listitems-blue);
+  padding: 3%;
+  color : white;
+  margin: 1% 0;
+  border-radius: 5px;
+}
+
+.teacherLiTag{
+  font-size: 0.8rem ;
+  margin-left:  2%;
+  background-color: var(--color-tags-blue);
+  padding: 1.5%;
+  border-radius: 5px;
+}
