@@ -1,21 +1,21 @@
-
 const app = {
 
   init: function() {
 
     app.createTeacherForm();
-    app.createCounterElm();
-    app.createListElm();
+    app.createTeacherCounter();
+    app.createTeacherList();
   },
   domElm :{
     appContainer : document.querySelector('#app')
   },
   createTeacherForm :function(){
 
-    //création du formulaire contenant l'input
+    //création du formulaire
     app.domElm.teacherForm = document.createElement('form');
     app.domElm.teacherForm.id="form__teacher"
-    //on y ajoute un event listener
+
+    //on y ajoute un event listener qui va récupérer les valeurs des 2 selects
     app.domElm.teacherForm.addEventListener('change',(e)=>{
       const form = e.target.closest('form');
       const teachersData = new FormData(form);
@@ -47,7 +47,7 @@ const app = {
     const filterList= [];
     for(const teacher of app.teachers){
       if(!filterList.includes(teacher[filterName])){
-        filterList.push(teacher[filterName])
+        filterList.push(teacher[filterName]);
       }
     }
   // on crée les options correspondantes
@@ -61,16 +61,15 @@ const app = {
     app.domElm.teacherForm.appendChild(selectInput);
 
   },
-  createCounterElm: function(){
+  createTeacherCounter: function(){
     //creation de la balise paragraphe qui va recevoir le nombre de prof.
     app.domElm.teacherCounterElm = document.createElement('p');
     app.domElm.teacherCounterElm.id="title__teacher-counter";
-    // app.domElm.teacherCounterElm.textContent ="choisissez un language et une spécialité";
 
     //on attache cet élément au container du DOM
     app.domElm.appContainer.appendChild(app.domElm.teacherCounterElm);
   },
-  createListElm: function(){
+  createTeacherList: function(){
     //creation de la balise ul qui va recevoir les liste des profs
     app.domElm.teacherListElm = document.createElement('ul');
     app.domElm.teacherListElm.id="list__teachers";
@@ -90,26 +89,29 @@ const app = {
     app.updateTeacherCounter(teachers.length);
 
     //on va également créer les elements de liste correspondants au professeurs trouvés.
-    app.udpateTeachersList(teachers)
+    app.udpateTeachersList(teachers);
 
   },
   updateTeacherCounter: function(numberOfTeachers){
-    app.domElm.teacherCounterElm.textContent =`${numberOfTeachers} profs trouvés`
+    app.domElm.teacherCounterElm.textContent =`${numberOfTeachers} profs trouvés`;
   },
   udpateTeachersList: function(teachers){
     //on efface préalablement le contenu de la liste avant d'afficher de nouveaux éléments
-    app.domElm.teacherListElm.textContent = ''
+    app.domElm.teacherListElm.textContent = '';
     //on crée un li pour chacun des teacher
     teachers.forEach(teacher =>{
+
       //on crée la liste principale
       const liTeacher = document.createElement('li');
       liTeacher.classList.add('teacherLi');
-      liTeacher.textContent = teacher.name
-      //puis on crée le tag avec un span
+      liTeacher.textContent = teacher.name;
+
+      //puis on crée le tag avec un span pour la base
       const tagBaseElm = document.createElement('span');
       tagBaseElm.classList.add('teacherLiTag');
       tagBaseElm.textContent = teacher.base;
       liTeacher.appendChild(tagBaseElm);
+
       //on crée un autre span pour la spécialitée
       const tagSpecialityElm = document.createElement('span');
       tagSpecialityElm.classList.add('teacherLiTag');
